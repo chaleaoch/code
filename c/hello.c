@@ -1,23 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int main()
 {
-    int i, j;
-    scanf("%d,%d", &i, &j);
-    printf("%d", i + j);
-    if
-        1 == 1
-        {
-        }
-    else if ()
+    pid_t pid;
+    printf("[%d] Begin\n", getpid());
+    pid = fork();
+    if (pid < 0)
     {
-        /* code */
+        perror("fork()");
+        exit(1);
+    }
+    if (pid == 0)
+    {
+        printf("[%d]:Child is working", getpid());
     }
     else
     {
-        /* code */
+        printf("Parent is working\n", getpid());
     }
-
+    printf("[%d]:End!\n", getpid());
     exit(0);
 }
